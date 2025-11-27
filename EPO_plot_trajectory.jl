@@ -63,4 +63,4 @@ title!("")
 
 plotname = "trajectory $yearvariant _N$(N)_q$(q)_p$(@sprintf("%.2f", p))_alpha$(@sprintf("%.2f", alpha)).png"
 
-savefig(joinpath("qv_EPO_figures_trajectories/", plotname))
+# savefig(joinpath("qv_EPO_figures_trajectories/", plotname))

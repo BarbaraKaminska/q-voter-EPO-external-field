@@ -7,17 +7,18 @@ using LaTeXStrings
 
 N = 10000
 q = 3
-alpha = 0.5
+alpha = 0.1
 c0 = 1.
-yearvariant = "2018_v1"
+yearvariant = "2025"
 
 
 # h = [[0, 0], [0.01, 0], [0.05, 0], [0, 0.01], [0, 0.05]]
-h = [0.0, 0.05]
+h = [0.01, 0.00]
 he, hp = h
 
 plot_name = "EPO_$yearvariant _N$(N)_q$(q)_alpha$(@sprintf("%.2f", alpha))_c0$(@sprintf("%.2f", c0))_he$(@sprintf("%.2f", he))_hp$(@sprintf("%.2f", hp)).png"
 
+plot()
 
 p1 = plot(xlabel="\$p\$", ylabel="\$c_S\$", xlims=(0, 1), ylims=(0, 1), margin=5mm)
 p2 = plot(xlabel="\$p\$", ylabel="\$c_σ\$", xlims=(0, 1), ylims=(0, 1), margin=5mm)
@@ -49,7 +50,7 @@ plot!(p3, p, diss, seriestype=:scatter, framestyle=:box, xlabelfontsize=14, ylab
 # title!("model_$yearvariant, alpha = $(@sprintf("%.2f", alpha))")
 
 
-# c0 = 0.5
+c0 = 0.0
 
 filename = "EPO_$yearvariant _N$(N)_q$(q)_alpha$(@sprintf("%.2f", alpha))_c0$(@sprintf("%.2f", c0))_he$(@sprintf("%.2f", he))_hp$(@sprintf("%.2f", hp)).txt"
 
@@ -58,8 +59,10 @@ df = readdlm(joinpath("qv_EPO_$yearvariant", filename), '\t')  # For CSV-style f
 # print(df)
 
 p = df[:, 1]
-cE = map((x) -> 0.5 + abs(0.5-x),  df[:, 2])
-cP = map((x) -> 0.5 + abs(0.5-x),  df[:, 3])
+cE = df[:, 2]
+cP = df[:, 3]
+# cE = map((x) -> 0.5 + abs(0.5-x),  df[:, 2])
+# cP = map((x) -> 0.5 + abs(0.5-x),  df[:, 3])
 diss = df[:, 4]
 
 

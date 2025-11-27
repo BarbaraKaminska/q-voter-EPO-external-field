@@ -2,20 +2,21 @@ include("../EPO_functions.jl")
 
 yearvariant = "2025"
 
-N = 10000
-q = 5
+N = 100000
+q = 3
 alpha = 0.1
-c0 = 1.0
+c0 = 0.0
 # he = 0.05
 # hp = 0.
-MCS_term = 10000
-MCS_total = 12000
+MCS_term = 4000
+MCS_total = 8000
 MCS_step = 100
 
 println("Start")
 
-h = [[0, 0], [0.01, 0], [0.05, 0], [0, 0.01], [0, 0.05]]
-# h = [[0., 0.1], [0.1, 0]]
+h = [[0.01, 0]] 
+# h = [0.05, 0], [0, 0.01], [0, 0.05]]
+# h = [[0.01, 0.0]]
 
 for htemp in h
     he, hp = htemp

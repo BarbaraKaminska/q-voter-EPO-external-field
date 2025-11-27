@@ -8,7 +8,7 @@ using LaTeXStrings
 N = 10000
 q = 3
 alpha = 0.1
-c0 = 1.
+c0 = 0.
 yearvariant = "2018"
 
 plot_name = "EPO_$yearvariant _N$(N)_q$(q)_alpha$(@sprintf("%.2f", alpha))_c0$(@sprintf("%.2f", c0))_with_MFA.png"
@@ -51,10 +51,10 @@ for htemp in h
     plot!(p2, p, cP, seriestype=:scatter, markersize = msize, framestyle=:box, xlabelfontsize=14, ylabelfontsize=14, label = false)
     plot!(p3, p, diss, seriestype=:scatter, markersize = msize, framestyle=:box, xlabelfontsize=14, ylabelfontsize=14, label = false)
 
-    plot!(p1, panalytics, cEanalytics,framestyle=:box, xlabelfontsize=14, ylabelfontsize=14,
+    plot!(p1, panalytics, cEanalytics,framestyle=:box, xlabelfontsize=14, ylabelfontsize=14, lcolor = :black, 
      label = "he = $(@sprintf("%.2f", he)); hp = $(@sprintf("%.2f", hp))")
-    plot!(p2, panalytics, cPanalytics, framestyle=:box, xlabelfontsize=14, ylabelfontsize=14, label = false)
-    plot!(p3, panalytics, dissanalytics, framestyle=:box, xlabelfontsize=14, ylabelfontsize=14, label = false)
+    plot!(p2, panalytics, cPanalytics, framestyle=:box, xlabelfontsize=14, ylabelfontsize=14, lcolor = :black, label = false)
+    plot!(p3, panalytics, dissanalytics, framestyle=:box, xlabelfontsize=14, ylabelfontsize=14, lcolor = :black, label = false)
 
 
 end

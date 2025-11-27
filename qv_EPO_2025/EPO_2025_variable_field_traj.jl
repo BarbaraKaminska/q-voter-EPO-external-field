@@ -4,23 +4,26 @@ yearvariant = "2025"
 
 N = 1000000
 q = 3
-p = 0.2
+p = 0.25
 alpha = 0.1
 # c0 = .5
 he = 0.02
 hp = 0.02
-MCS_he = 1000
-MCS_hp = 1000
-MCS_none = 1000
+MCS_he = 2000
+MCS_hp = 2000
+MCS_none = 2000
 
-MCS_total = MCS_he + 2*MCS_none + MCS_hp 
-MCS_step = 1
 
-c0_ = 0.4 # 0.:0.1:1.
+
+c0_ = 0.:0.1:1.
 println("Start")
 
-he_, hp_ = externalfield(he, hp, MCS_he, MCS_hp, MCS_none)
+he_, hp_ = externalfield(he, hp, MCS_he, MCS_hp, MCS_none) 
+he_ = vcat(he_, externalfield(he, hp, MCS_he, MCS_hp, MCS_none)[1])
+hp_ = vcat(hp_, externalfield(he, hp, MCS_he, MCS_hp, MCS_none)[2])
 
+MCS_total = length(he_) - 1 
+MCS_step = 1
 
 for c0 in c0_
 

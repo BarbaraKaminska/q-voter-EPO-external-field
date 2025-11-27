@@ -7,10 +7,10 @@ using Plots: mm
 
 N = 1000000
 q = 3
-p = 0.2
+p = 0.25
 alpha = 0.1
 # c0 = 0.5
-c0_ = [0.4] # 0.:0.1:1.
+c0_ =  0.:0.1:1.
 
 yearvariant = "2025"
 
@@ -47,7 +47,7 @@ for (idx_c, c0) in enumerate(c0_)
     if (idx_c == 1)
         plot!(t, cE, seriestype=:line, color = colors[1], label = "Expressed")
         plot!(t, he, seriestype=:line, color = colors[2], label = "External field expressed")
-        plot!(t, hp, seriestype=:line, color = colors[3], label = "External field private")
+        plot!(t, hp, seriestype=:line, color = colors[3], label = "External field private", legend=:bottomright)
     else
         plot!(t, cE, seriestype=:line, color = colors[1], label = "")
         plot!(t, he, seriestype=:line, color = colors[2], label = "")
@@ -60,9 +60,10 @@ end
 
 println("Plot ready")
 xlims!(0, tmax+10)
-ylims!(0, 1)
+ylims!(0, 1.)
 xlabel!("time")
 ylabel!("Fraction of agents \n with ecofriendly behavior")
+
 # title!("model_$yearvariant, alpha = $(@sprintf("%.2f", alpha))")
 title!("")
 
@@ -70,3 +71,4 @@ plotname = "trajectory $yearvariant _N$(N)_q$(q)_p$(@sprintf("%.2f", p))_alpha$(
 
 
 savefig(joinpath("qv_EPO_figures_trajectories/", plotname))
+plot!()

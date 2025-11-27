@@ -5,15 +5,16 @@ using Printf
 using LaTeXStrings
 
 N = 10000
-q = 5
-alpha = 0.5
+q = 3
+alpha = 0.1
 c0 = 1.
 yearvariant = "2018"
 
 plot_name = "EPO_$yearvariant _N$(N)_q$(q)_alpha$(@sprintf("%.2f", alpha))_c0$(@sprintf("%.2f", c0)).png"
 
-h = [[0, 0], [0.01, 0], [0.05, 0], [0, 0.01], [0, 0.05]]
-# h = [[0.0, 0.05]]
+# h = [[0, 0], [0.01, 0], [0.05, 0], [0, 0.01], [0, 0.05]]
+h = [[0, 0], [0.01, 0], [0, 0.01]]
+# h = [[0.0, 0.01]]
 plot()
 
 for htemp in h
@@ -29,14 +30,19 @@ for htemp in h
     cP = df[:, 3]
     diss = df[:, 4]
 
-
-    plot!(p, cE, seriestype=:scatter, label = "he = $(@sprintf("%.2f", he)); hp = $(@sprintf("%.2f", hp))")
+    if he == 0.0 && hp == 0.0
+        plot!(p, cE, seriestype=:scatter, markershape = :circle, msize = 4, label = "No external field")
+    elseif he != 0.0 && hp == 0.0
+        plot!(p, cE, seriestype=:scatter, markershape = :diamond, msize = 4, label = "he = $(@sprintf("%.2f", he)); hp = $(@sprintf("%.2f", hp))")
+    else 
+        plot!(p, cE, seriestype=:scatter, markershape = :square, msize = 3, label = "he = $(@sprintf("%.2f", he)); hp = $(@sprintf("%.2f", hp))")
+    end
 
 
 end
 
 xlims!(0, 1)
-ylims!(0, 1)
+ylims!(0, 1.05)
 xlabel!("\$p\$")
 ylabel!("\$c_S\$")
 title!("model_$yearvariant, alpha = $(@sprintf("%.2f", alpha))")
@@ -66,4 +72,4 @@ title!("model_$yearvariant, alpha = $(@sprintf("%.2f", alpha))")
 # end
 
 plot!(dpi=300)
-# savefig(joinpath("qv_EPO_figures/", plot_name))
+savefig(joinpath("qv_EPO_figures_$yearvariant/", plot_name))
