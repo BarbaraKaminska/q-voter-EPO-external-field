@@ -62,5 +62,5 @@ ylabel!("Fraction of agents \n with ecofriendly behavior")
 title!("")
 
 plotname = "trajectory $yearvariant _N$(N)_q$(q)_p$(@sprintf("%.2f", p))_alpha$(@sprintf("%.2f", alpha)).png"
-
+plot()
 # savefig(joinpath("qv_EPO_figures_trajectories/", plotname))

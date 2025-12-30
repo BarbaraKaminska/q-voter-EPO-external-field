@@ -12,7 +12,7 @@ alpha = 0.1
 # c0 = 0.5
 c0_ =  0.:0.1:1.
 
-yearvariant = "2025"
+yearvariant = "2018"
 
 println("Start plot")
 
@@ -29,7 +29,7 @@ plot(dpi=300)
 for (idx_c, c0) in enumerate(c0_)
     # println(c0)
 
-    filename = "EPO_traj_$yearvariant _N$(N)_q$(q)_p$(@sprintf("%.2f", p))_alpha$(@sprintf("%.2f", alpha))_c0$(@sprintf("%.2f", c0)).txt"
+    filename = "EPO_traj_$(yearvariant)_N$(N)_q$(q)_p$(@sprintf("%.2f", p))_alpha$(@sprintf("%.2f", alpha))_c0$(@sprintf("%.2f", c0)).txt"
     # filename = "EPO_traj_2025 _N1000000_q3_p0.20_alpha0.10_c00.40.txt"
     #df = CSV.read(joinpath("qv_EPO", filename), DataFrame; delim='\t')  
     df = readdlm(joinpath("qv_EPO_$yearvariant", filename), '\t')  # For CSV-style files
@@ -47,7 +47,7 @@ for (idx_c, c0) in enumerate(c0_)
     if (idx_c == 1)
         plot!(t, cE, seriestype=:line, color = colors[1], label = "Expressed")
         plot!(t, he, seriestype=:line, color = colors[2], label = "External field expressed")
-        plot!(t, hp, seriestype=:line, color = colors[3], label = "External field private", legend=:bottomright)
+        plot!(t, hp, seriestype=:line, color = colors[3], label = "External field private", legend=:right)
     else
         plot!(t, cE, seriestype=:line, color = colors[1], label = "")
         plot!(t, he, seriestype=:line, color = colors[2], label = "")

@@ -7,11 +7,11 @@ using LaTeXStrings
 
 N = 10000
 q = 3
-alpha = 0.5
+alpha = 0.1
 c0 = 1.
 yearvariant = "2025"
 
-plot_name = "EPO_$yearvariant _N$(N)_q$(q)_alpha$(@sprintf("%.2f", alpha))_c0$(@sprintf("%.2f", c0)).png"
+plot_name = "EPO_$(yearvariant)_N$(N)_q$(q)_alpha$(@sprintf("%.2f", alpha))_c0$(@sprintf("%.2f", c0)).png"
 
 h = [[0, 0], [0.01, 0], [0.05, 0], [0, 0.01], [0, 0.05]]
 # h = [[0.0, 0.05]]
@@ -22,7 +22,7 @@ p3 = plot(xlabel="\$p\$", ylabel="\$d\$", xlims=(0, 1), ylims=(0, 1), margin=5mm
 
 for htemp in h
     he, hp = htemp
-    filename = "EPO_$yearvariant _N$(N)_q$(q)_alpha$(@sprintf("%.2f", alpha))_c0$(@sprintf("%.2f", c0))_he$(@sprintf("%.2f", he))_hp$(@sprintf("%.2f", hp)).txt"
+    filename = "EPO_$(yearvariant)_N$(N)_q$(q)_alpha$(@sprintf("%.2f", alpha))_c0$(@sprintf("%.2f", c0))_he$(@sprintf("%.2f", he))_hp$(@sprintf("%.2f", hp)).txt"
 
     #df = CSV.read(joinpath("qv_EPO", filename), DataFrame; delim='\t')  
     df = readdlm(joinpath("qv_EPO_$yearvariant", filename), '\t')  # For CSV-style files
